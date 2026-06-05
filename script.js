@@ -13,13 +13,17 @@ window.addEventListener('load', () => {
         if (loader) {
             loader.classList.add('hidden');
         }
-        // Init AOS after loader
-        AOS.init({
-            duration: 900,
-            once: true,
-            easing: 'ease-out-cubic',
-            offset: 80
-        });
+        // Init AOS after loader (dengan try-catch agar aman jika CDN gagal)
+        try {
+            AOS.init({
+                duration: 900,
+                once: true,
+                easing: 'ease-out-cubic',
+                offset: 80
+            });
+        } catch(e) {
+            console.warn('AOS failed to init:', e);
+        }
         // Animate tech bars after load
         animateTechBars();
     }, 2000);
