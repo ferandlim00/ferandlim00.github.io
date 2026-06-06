@@ -19,7 +19,11 @@ window.addEventListener('load', () => {
                 duration: 900,
                 once: true,
                 easing: 'ease-out-cubic',
-                offset: 80
+                offset: 80,
+                // Disable fade-out-of-bounds animations on mobile to prevent horizontal scroll
+                disable: function() {
+                    return window.innerWidth < 768;
+                }
             });
         } catch(e) {
             console.warn('AOS failed to init:', e);
